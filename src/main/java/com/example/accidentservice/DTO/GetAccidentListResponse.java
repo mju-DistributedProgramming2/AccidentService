@@ -3,15 +3,16 @@ package com.example.accidentservice.DTO;
 import com.example.accidentservice.Entity.Accident;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GetAccidentListResponse {
-    ArrayList<Accident> accidentList;
+    List<Accident> accidentList;
 
-    public ArrayList<Accident> getAccidentList() {
+    public List<Accident> getAccidentList() {
         return accidentList;
     }
 
-    public void setAccidentList(ArrayList<Accident> accidentList) {
+    public void setAccidentList(List<Accident> accidentList) {
         this.accidentList = accidentList;
     }
 }

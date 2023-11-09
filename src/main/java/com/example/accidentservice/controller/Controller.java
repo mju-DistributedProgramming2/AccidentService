@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.rmi.RemoteException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class Controller {
@@ -27,7 +28,7 @@ public class Controller {
     }
     @GetMapping("/allAccidents")
     public GetAccidentListResponse getAccidentList() throws TimeDelayException, EmptyListException, RemoteException {
-        ArrayList<Accident> accidentList = this.accidentService.getAccidentList();
+        List<Accident> accidentList = this.accidentService.getAccidentList();
         GetAccidentListResponse getAccidentListResponse=new GetAccidentListResponse();
         getAccidentListResponse.setAccidentList(accidentList);
         return getAccidentListResponse;

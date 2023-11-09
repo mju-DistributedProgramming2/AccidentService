@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AccidentService extends UnicastRemoteObject implements AccidentServiceIF{
     @Autowired
@@ -35,9 +37,9 @@ public class AccidentService extends UnicastRemoteObject implements AccidentServ
         return accidentList;
     }
     @Override
-    public ArrayList<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException {
+    public List<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException {
         long beforeTime = System.currentTimeMillis();
-        ArrayList<Accident> accidentList = this.accidentDao.retrieve();
+        List<Accident> accidentList = this.accidentDao.retrieve();
         if(accidentList.isEmpty()) throw new EmptyListException("! 목록이 존재하지 않습니다.");
 //        try {Thread.sleep(7000);}
 //        catch (InterruptedException e) {throw new RuntimeException(e);}
