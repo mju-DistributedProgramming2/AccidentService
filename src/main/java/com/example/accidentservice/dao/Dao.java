@@ -1,15 +1,19 @@
 package com.example.accidentservice.dao;
 
+import com.example.accidentservice.Repository.AccidentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.sql.*;
 
 public abstract class Dao {
+
     protected Connection connection = null;
     protected Statement statement = null;
     protected ResultSet resultSet = null;
     public Dao(){
         try {
             String url = "jdbc:mysql://localhost:3306/";
-            String dbName = "insurance";
+            String dbName = "myinsurance";
             String userName = "root";
             String password = "1205";
             connection = DriverManager.getConnection(url + dbName + "?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC", userName, password);
@@ -22,6 +26,7 @@ public abstract class Dao {
         System.out.println(query);
         try {
             statement = connection.createStatement();
+
             if(!statement.execute(query)) System.out.println("insert OK!!");
             return true;
 //            return !statement.execute(query);

@@ -4,18 +4,29 @@ package com.example.accidentservice.Entity;
 
 import com.example.accidentservice.enumeration.accident.AccidentStatus;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-
+@Entity
 public class Accident implements Serializable {
+    @Id
+    @GeneratedValue
     private int id;
+    @Column(name = "conteactId",nullable = false)
     private int contractId;
+    @Column(name = "date",nullable = false)
     private Timestamp date;
+    @Column(name = "location",nullable = false)
     private String location;
+    @Column(name = "cause",nullable = false)
     private String cause;
+    @Column(name = "content",nullable = false)
     private String content;
+    @Column(name = "damage",nullable = false)
     private long damage;
+    @Column(name = "accountNumber",nullable = false)
     private String accountNumber;
+    @Column(name = "status",nullable = false)
     private AccidentStatus status;
 
     public Accident(int contractId, Timestamp date, String location, String cause, String content, long damage, String  accountNumber, AccidentStatus status) {
@@ -27,6 +38,10 @@ public class Accident implements Serializable {
         this.damage = damage;
         this.accountNumber = accountNumber;
         this.status = status;
+    }
+
+    public Accident() {
+
     }
 
     public int getId() {
@@ -100,4 +115,6 @@ public class Accident implements Serializable {
     public void setStatus(AccidentStatus status) {
         this.status = status;
     }
+
+
 }
