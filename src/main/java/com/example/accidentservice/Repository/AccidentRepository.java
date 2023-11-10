@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 @Repository
 public interface AccidentRepository extends JpaRepository<Accident,Integer> {
-    ArrayList<Accident> findByStatus(AccidentStatus status);
+//    ArrayList<Accident> findByStatus(AccidentStatus status);
 }

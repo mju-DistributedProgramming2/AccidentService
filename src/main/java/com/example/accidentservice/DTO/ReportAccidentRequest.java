@@ -3,7 +3,7 @@ package com.example.accidentservice.DTO;
 import com.example.accidentservice.Entity.Accident;
 
 public class ReportAccidentRequest {
-    Accident accident;
+    private Accident accident;
 
     public Accident getAccident() {
         return accident;

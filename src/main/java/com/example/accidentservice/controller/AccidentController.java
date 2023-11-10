@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class Controller {
+public class AccidentController {
     @Autowired
     AccidentService accidentService;
     @GetMapping("/accidents")
@@ -34,8 +34,8 @@ public class Controller {
         return getAccidentListResponse;
     }
     @GetMapping("/accident")
-    public AccidentResponse getAccident(GetAccidentRequest id) throws RemoteException, NoDataException {
-        Accident accident = this.accidentService.getAccident(id.getId());
+    public AccidentResponse getAccident(GetAccidentRequest getAccidentRequest) throws RemoteException, NoDataException {
+        Accident accident = this.accidentService.getAccident(getAccidentRequest.getId());
         AccidentResponse accidentResponse = new AccidentResponse(accident);
         return accidentResponse;
     }
