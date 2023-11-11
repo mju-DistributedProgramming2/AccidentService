@@ -23,6 +23,9 @@ public class AccidentDao extends Dao {
 
 
     public boolean create(Accident accident) {
+
+        System.out.println(accident);
+        accidentRepository.save(accident);
         if(accidentRepository.save(accident)==null) return false;
 //        String query ="insert into accident values ("+
 //                           accident.getId()+", "+

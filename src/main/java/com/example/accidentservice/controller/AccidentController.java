@@ -4,7 +4,6 @@ package com.example.accidentservice.controller;
 
 import com.example.accidentservice.DTO.*;
 import com.example.accidentservice.Entity.Accident;
-import com.example.accidentservice.enumeration.accident.AccidentStatus;
 import com.example.accidentservice.exception.EmptyListException;
 import com.example.accidentservice.exception.NoDataException;
 import com.example.accidentservice.exception.TimeDelayException;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.rmi.RemoteException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +39,7 @@ public class AccidentController {
     }
     @PostMapping("/accident")
     public ReportAccidentResponse reportAccident(@RequestBody ReportAccidentRequest accident) throws  RemoteException {
+        System.out.println(accident.getAccident());
         ReportAccidentResponse reportAccidentResponse = new ReportAccidentResponse();
         reportAccidentResponse.setId(accidentService.reportAccident(accident.getAccident()));
         return reportAccidentResponse;
