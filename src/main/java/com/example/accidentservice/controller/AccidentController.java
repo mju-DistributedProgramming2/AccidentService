@@ -21,6 +21,7 @@ public class AccidentController {
     AccidentService accidentService;
     @GetMapping("/accidents")
     public ArrayList<Accident> getAccidentList(GetAccidentListRequest status) throws TimeDelayException, EmptyListException, RemoteException {
+        System.out.println(status.getStatus());
         ArrayList<Accident> accidentList = this.accidentService.getAccidentList(status.getStatus());
         return accidentList;
     }
@@ -46,6 +47,7 @@ public class AccidentController {
     }
     @PatchMapping("/status")
     public SetStatusResponse setStatus(SetStatusRequest setStatusRequest) throws RemoteException{
+        System.out.println(setStatusRequest.getAccidentId()+"   "+setStatusRequest.getStatus());
         SetStatusResponse setStatusResponse = new SetStatusResponse();
         setStatusResponse.setStatusResponse(accidentService.setStatus(setStatusRequest.getAccidentId(),setStatusRequest.getStatus()));
         return setStatusResponse;

@@ -12,7 +12,7 @@ public class Accident implements Serializable {
     @Id
     @GeneratedValue
     private int id;
-    @Column(name = "conteactId",nullable = false)
+    @Column(name = "conteact_id",nullable = false)
     private int contractId;
     @Column(name = "date",nullable = false)
     private Timestamp date;

@@ -16,7 +16,7 @@ import java.util.List;
 public interface AccidentServiceIF extends Remote{
     ArrayList<Accident> getAccidentList(AccidentStatus status) throws RemoteException, EmptyListException, TimeDelayException;
 
-    List<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException;
+    ArrayList<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException;
 
     Accident getAccident(int id) throws RemoteException, NoDataException;
 

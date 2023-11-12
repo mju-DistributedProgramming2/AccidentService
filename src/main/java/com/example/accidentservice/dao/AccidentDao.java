@@ -40,7 +40,7 @@ public class AccidentDao extends Dao {
 //        return create(query);
         return true;
     }
-    public List<Accident> retrieve(){
+    public ArrayList<Accident> retrieve(){
 //        String query = "select * from accident;";
 //        ArrayList<Accident> accidentList = new ArrayList<>();
 //        resultSet = retrieve(query);
@@ -76,14 +76,19 @@ public class AccidentDao extends Dao {
 //            return new ArrayList<>();
 //        }
 //        return accidentList;
-        return accidentRepository.findAll();
+        ArrayList<Accident> accidentList = new ArrayList<>(accidentRepository.findAll());
+
+        return accidentList;
     }
     public boolean update(int id, AccidentStatus status) {
-        List<Accident> accidentList = retrieve();
+        ArrayList<Accident> accidentList = retrieve();
+        System.out.println("---------"+id);
         for(Accident accident : accidentList) {
+            System.out.println(accident.getId());
             if(accident.getId()==id) {
                 accident.setStatus(status);
 //                String query = "update accident set stauts = "+"'"+status+"'"+" where id = "+id;
+                System.out.println("야발");
                 accidentRepository.save(accident);
                 return true;
             }
@@ -91,7 +96,7 @@ public class AccidentDao extends Dao {
         return false;
     }
     public int add(Accident accident) {
-        List<Accident> accidentList = retrieve();
+        ArrayList<Accident> accidentList = retrieve();
         if(accidentList.size()==0) accident.setId(1);
         else {accident.setId(accidentList.get(accidentList.size()-1).getId()+1);}
         if(create(accident)) return accident.getId();

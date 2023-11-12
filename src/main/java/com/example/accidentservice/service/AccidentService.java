@@ -37,9 +37,9 @@ public class AccidentService extends UnicastRemoteObject implements AccidentServ
         return accidentList;
     }
     @Override
-    public List<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException {
+    public ArrayList<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException {
         long beforeTime = System.currentTimeMillis();
-        List<Accident> accidentList = this.accidentDao.retrieve();
+        ArrayList<Accident> accidentList = this.accidentDao.retrieve();
         if(accidentList.isEmpty()) throw new EmptyListException("! 목록이 존재하지 않습니다.");
 //        try {Thread.sleep(7000);}
 //        catch (InterruptedException e) {throw new RuntimeException(e);}
