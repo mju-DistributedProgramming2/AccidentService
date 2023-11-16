@@ -11,12 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 @EnableAspectJAutoProxy
 public class AccidentServiceApplication extends SpringBootServletInitializer {
-
-    public static void main(String[] args) {
-        SpringApplication.run(AccidentServiceApplication.class, args);
-    }
+    public static void main(String[] args) {SpringApplication.run(AccidentServiceApplication.class, args);}
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(AccidentServiceApplication.class);
-    }
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {return builder.sources(AccidentServiceApplication.class);}
 }

@@ -20,10 +20,11 @@ public class AccidentController {
     @Autowired
     AccidentService accidentService;
     @GetMapping("/accidents")
-    public ArrayList<Accident> getAccidentList(GetAccidentListRequest status) throws TimeDelayException, EmptyListException, RemoteException {
-        System.out.println(status.getStatus());
+    public GetAccidentListResponse getAccidentList(GetAccidentListRequest status) throws TimeDelayException, EmptyListException, RemoteException {
         ArrayList<Accident> accidentList = this.accidentService.getAccidentList(status.getStatus());
-        return accidentList;
+        GetAccidentListResponse getAccidentListResponse = new GetAccidentListResponse();
+        getAccidentListResponse.setAccidentList(accidentList);
+        return getAccidentListResponse;
     }
     @GetMapping("/allAccidents")
     public GetAccidentListResponse getAccidentList() throws TimeDelayException, EmptyListException, RemoteException {
