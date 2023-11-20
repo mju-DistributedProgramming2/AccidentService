@@ -11,12 +11,11 @@ import com.example.accidentservice.exception.TimeDelayException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface AccidentServiceIF extends Remote{
-    ArrayList<Accident> getAccidentList(AccidentStatus status) throws RemoteException, EmptyListException, TimeDelayException;
+    ArrayList<Accident> getAllAccidentList(AccidentStatus status) throws RemoteException, EmptyListException, TimeDelayException;
 
-    ArrayList<Accident> getAccidentList() throws RemoteException, EmptyListException, TimeDelayException;
+    ArrayList<Accident> getAllAccidentList() throws RemoteException, EmptyListException, TimeDelayException;
 
     Accident getAccident(int id) throws RemoteException, NoDataException;
 

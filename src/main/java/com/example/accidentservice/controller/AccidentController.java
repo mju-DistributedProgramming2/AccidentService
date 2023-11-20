@@ -20,15 +20,15 @@ public class AccidentController {
     @Autowired
     AccidentService accidentService;
     @GetMapping("/accidents")
-    public GetAccidentListResponse getAccidentList(GetAccidentListRequest status) throws TimeDelayException, EmptyListException, RemoteException {
-        ArrayList<Accident> accidentList = this.accidentService.getAccidentList(status.getStatus());
+    public GetAccidentListResponse getAllAccidentList(GetAccidentListRequest status) throws TimeDelayException, EmptyListException, RemoteException {
+        ArrayList<Accident> accidentList = this.accidentService.getAllAccidentList(status.getStatus());
         GetAccidentListResponse getAccidentListResponse = new GetAccidentListResponse();
         getAccidentListResponse.setAccidentList(accidentList);
         return getAccidentListResponse;
     }
     @GetMapping("/allAccidents")
-    public GetAccidentListResponse getAccidentList() throws TimeDelayException, EmptyListException, RemoteException {
-        List<Accident> accidentList = this.accidentService.getAccidentList();
+    public GetAccidentListResponse getAllAccidentList() throws TimeDelayException, EmptyListException, RemoteException {
+        List<Accident> accidentList = this.accidentService.getAllAccidentList();
         GetAccidentListResponse getAccidentListResponse=new GetAccidentListResponse();
         getAccidentListResponse.setAccidentList(accidentList);
         return getAccidentListResponse;
@@ -47,8 +47,7 @@ public class AccidentController {
         return reportAccidentResponse;
     }
     @PatchMapping("/status")
-    public SetStatusResponse setStatus(SetStatusRequest setStatusRequest) throws RemoteException{
-        System.out.println(setStatusRequest.getAccidentId()+"   "+setStatusRequest.getStatus());
+    public SetStatusResponse setStatus(@RequestBody SetStatusRequest setStatusRequest) throws RemoteException{
         SetStatusResponse setStatusResponse = new SetStatusResponse();
         setStatusResponse.setStatusResponse(accidentService.setStatus(setStatusRequest.getAccidentId(),setStatusRequest.getStatus()));
         return setStatusResponse;
