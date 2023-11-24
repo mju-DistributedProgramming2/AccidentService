@@ -20,6 +20,7 @@ public class AccidentResponse implements Serializable {
     private AccidentStatus status;
 
     public AccidentResponse(Accident accident) {
+        this.id = accident.getId();
         this.contractId = accident.getContractId();
         this.date = accident.getDate();
         this.location = accident.getLocation();

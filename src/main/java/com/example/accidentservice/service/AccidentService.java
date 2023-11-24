@@ -8,6 +8,7 @@ import com.example.accidentservice.exception.EmptyListException;
 import com.example.accidentservice.exception.NoDataException;
 import com.example.accidentservice.exception.TimeDelayException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.stereotype.Service;
 
 import java.rmi.RemoteException;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@EnableDiscoveryClient
 public class AccidentService extends UnicastRemoteObject implements AccidentServiceIF{
     @Autowired
     AccidentDao accidentDao;
+
 
     public AccidentService() throws RemoteException {
     }
@@ -52,13 +55,14 @@ public class AccidentService extends UnicastRemoteObject implements AccidentServ
     @Override
     public Accident getAccident(int id) throws RemoteException, NoDataException {
         Accident accident = this.accidentDao.findById(id);
-        if(accidentDao == null) throw new NoDataException("! 존재하지 않는 사고입니다.");
-        return accidentDao.findById(id);
+        if(accident == null) throw new NoDataException("! 존재하지 않는 사고입니다.");
+        return accident;
     }
     @Override
     public int reportAccident(Accident accident) throws RemoteException {
         return this.accidentDao.add(accident);
     }
+
     @Override
     public boolean setStatus(int accidentId, AccidentStatus status) throws RemoteException{
         return this.accidentDao.update(accidentId, status);

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class AccidentDao extends Dao {
+public class AccidentDao {
     @Autowired
     private final AccidentRepository accidentRepository;
 
@@ -25,57 +25,10 @@ public class AccidentDao extends Dao {
     public boolean create(Accident accident) {
 
         System.out.println(accident);
-        accidentRepository.save(accident);
         if(accidentRepository.save(accident)==null) return false;
-//        String query ="insert into accident values ("+
-//                           accident.getId()+", "+
-//                accident.getContractId()+", "+
-//                "'"+accident.getDate()+"'"+", "+
-//                "'"+accident.getLocation()+"'"+", "+
-//                "'"+accident.getCause()+"'"+", "+
-//                "'"+accident.getContent()+"'"+", "+
-//                accident.getDamage()+", "+
-//                "'"+accident.getAccountNumber()+"'"+", "+
-//                "'"+accident.getStatus()+"'"+");";
-//        return create(query);
         return true;
     }
     public ArrayList<Accident> retrieve(){
-//        String query = "select * from accident;";
-//        ArrayList<Accident> accidentList = new ArrayList<>();
-//        resultSet = retrieve(query);
-//        try {
-//            while(resultSet.next()) {
-//                AccidentStatus accidentStatus = null;
-//                switch(resultSet.getString(9)) {
-//                    case "ReportAccident":
-//                        accidentStatus = AccidentStatus.ReportAccident;
-//                        break;
-//                    case "RefuseCompensate":
-//                        accidentStatus = AccidentStatus.RefuseCompensate;
-//                        break;
-//                    case "Compensate":
-//                        accidentStatus = AccidentStatus.Compensate;
-//                        break;
-//                }
-//                Accident accident = new Accident(
-//                        resultSet.getInt(2),
-//                        resultSet.getTimestamp(3),
-//                        resultSet.getString(4),
-//                        resultSet.getString(5),
-//                        resultSet.getString(6),
-//                        resultSet.getLong(7),
-//                        resultSet.getString(8),
-//                        accidentStatus
-//                );
-//                accident.setId(resultSet.getInt(1));
-//                accidentList.add(accident);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return new ArrayList<>();
-//        }
-//        return accidentList;
         ArrayList<Accident> accidentList = new ArrayList<>(accidentRepository.findAll());
 
         return accidentList;
@@ -87,8 +40,6 @@ public class AccidentDao extends Dao {
             System.out.println(accident.getId());
             if(accident.getId()==id) {
                 accident.setStatus(status);
-//                String query = "update accident set stauts = "+"'"+status+"'"+" where id = "+id;
-                System.out.println("야발");
                 accidentRepository.save(accident);
                 return true;
             }
@@ -112,6 +63,7 @@ public class AccidentDao extends Dao {
 
     public Accident findById(int id) {
         for(Accident accident : retrieve()) {
+            System.out.println(accident.getId());
             if(accident.getId() == id) return accident;
         }
         return null;

@@ -21,4 +21,6 @@ public class SetStatusRequest {
     public void setStatus(AccidentStatus status) {
         this.status = status;
     }
+
+
 }
