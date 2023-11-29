@@ -31,11 +31,11 @@ public class AccidentController {
         return this.accidentService.getAccidentById(id);
     }
     @PostMapping("/accident")
-    public ResponseEntity<ReportAccidentResponse> postAccident(@RequestBody ReportAccidentRequest accident){
+    public ResponseEntity<Integer> postAccident(@RequestBody ReportAccidentRequest accident){
         return accidentService.postAccident(accident.postAccident());
     }
     @PatchMapping("/status")
-    public ResponseEntity<SetStatusResponse> patchStatusById(@RequestBody SetStatusRequest setStatusRequest){
+    public ResponseEntity<Boolean> patchStatusById(@RequestBody SetStatusRequest setStatusRequest){
         return accidentService.patchStatusById(setStatusRequest.getAccidentId(),setStatusRequest.getStatus());
     }
 

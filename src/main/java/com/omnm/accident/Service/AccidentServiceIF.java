@@ -22,7 +22,7 @@ public interface AccidentServiceIF extends Remote{
 
     ResponseEntity<Accident> getAccidentById(int id);
 
-    ResponseEntity<ReportAccidentResponse> postAccident(Accident accident);
+    ResponseEntity<Integer> postAccident(Accident accident);
 
-    ResponseEntity<SetStatusResponse> patchStatusById(int accidentId, AccidentStatus status);
+    ResponseEntity<Boolean> patchStatusById(int accidentId, AccidentStatus status);
 }

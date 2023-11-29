@@ -62,16 +62,12 @@ public class AccidentService implements AccidentServiceIF{
         return new ResponseEntity<>(accident,new HttpHeaders(),HttpStatus.valueOf(200));
     }
     @Override
-    public ResponseEntity<ReportAccidentResponse> postAccident(Accident accident){
-        ReportAccidentResponse reportAccidentResponse = new ReportAccidentResponse();
-        reportAccidentResponse.setId(this.accidentDao.createAccident(accident));
-        return new ResponseEntity<>(reportAccidentResponse,new HttpHeaders(),HttpStatus.valueOf(200));
+    public ResponseEntity<Integer> postAccident(Accident accident){
+        return new ResponseEntity<>(this.accidentDao.createAccident(accident),new HttpHeaders(),HttpStatus.valueOf(200));
     }
 
     @Override
-    public ResponseEntity<SetStatusResponse> patchStatusById(int accidentId, AccidentStatus status){
-        SetStatusResponse setStatusResponse = new SetStatusResponse();
-        setStatusResponse.setStatusResponse(this.accidentDao.updateStatusInAccidentById(accidentId,status));
-        return new ResponseEntity<>(setStatusResponse,new HttpHeaders(),HttpStatus.valueOf(200));
+    public ResponseEntity<Boolean> patchStatusById(int accidentId, AccidentStatus status){
+        return new ResponseEntity<>(this.accidentDao.updateStatusInAccidentById(accidentId,status),new HttpHeaders(),HttpStatus.valueOf(200));
     }
 }
