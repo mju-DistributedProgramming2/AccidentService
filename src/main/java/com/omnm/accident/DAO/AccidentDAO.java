@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public class AccidentDAO {
     @Autowired
-    private final AccidentRepository accidentRepository;
+    private AccidentRepository accidentRepository;
 
     public AccidentDAO(AccidentRepository accidentRepository) {
         this.accidentRepository = accidentRepository;
