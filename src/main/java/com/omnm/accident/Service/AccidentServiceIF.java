@@ -2,24 +2,27 @@ package com.omnm.accident.Service;
 
 
 
+import com.omnm.accident.DTO.ReportAccidentResponse;
+import com.omnm.accident.DTO.SetStatusResponse;
 import com.omnm.accident.Entity.Accident;
 import com.omnm.accident.enumeration.accident.AccidentStatus;
 import com.omnm.accident.exception.EmptyListException;
 import com.omnm.accident.exception.NoDataException;
 import com.omnm.accident.exception.TimeDelayException;
+import org.springframework.http.ResponseEntity;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface AccidentServiceIF extends Remote{
-    ArrayList<Accident> getAllAccidentList(AccidentStatus status) throws RemoteException, EmptyListException, TimeDelayException;
+    ResponseEntity<ArrayList<Accident>> getAccidentListByStatus(AccidentStatus status);
 
-    ArrayList<Accident> getAllAccidentList() throws RemoteException, EmptyListException, TimeDelayException;
+    ResponseEntity<ArrayList<Accident>> getAccidentList();
 
-    Accident getAccident(int id) throws RemoteException, NoDataException;
+    ResponseEntity<Accident> getAccidentById(int id);
 
-    int reportAccident(Accident accident) throws RemoteException;
+    ResponseEntity<ReportAccidentResponse> postAccident(Accident accident);
 
-    boolean setStatus(int accidentId, AccidentStatus status) throws RemoteException;
+    ResponseEntity<SetStatusResponse> patchStatusById(int accidentId, AccidentStatus status);
 }

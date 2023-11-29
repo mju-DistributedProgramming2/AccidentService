@@ -9,61 +9,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Repository
-public class AccidentDao {
+public class AccidentDAO {
     @Autowired
     private final AccidentRepository accidentRepository;
 
-    public AccidentDao(AccidentRepository accidentRepository) {
+    public AccidentDAO(AccidentRepository accidentRepository) {
         this.accidentRepository = accidentRepository;
     }
 
-
-    public boolean create(Accident accident) { // createAccident -> Repository에 있어야하는 애 -> 없어져야함
-        System.out.println(accident);
+    public boolean updateStatusInAccidentById(int id, AccidentStatus status) { // updateStatusInAccidentById
+//        ArrayList<Accident> accidentList = retrieve();
+//        System.out.println("---------"+id);
+//        for(Accident accident : accidentList) {
+//            System.out.println(accident.getId());
+//            if(accident.getId()==id) {
+//                accident.setStatus(status);
+//                accidentRepository.save(accident);
+//                return true;
+//            }
+//        }
+//        return false;
+        Optional<Accident> accidents  = accidentRepository.findById(id);
+        Accident accident = accidents.get();
+        accident.setStatus(status);
+        accidentRepository.save(accident);
         if(accidentRepository.save(accident)==null) return false;
         return true;
     }
-    public ArrayList<Accident> retrieve(){ // 삭제
-        ArrayList<Accident> accidentList = new ArrayList<>(accidentRepository.findAll());
-
-        return accidentList;
+    public int createAccident(Accident accident) { // createAccident
+//        ArrayList<Accident> accidentList = retrieve();
+//        if(accidentList.size()==0) accident.setId(1);
+//        else {accident.setId(accidentList.get(accidentList.size()-1).getId()+1);}
+//        if(create(accident)) return accident.getId();
+//        else {return 0;}
+        return accidentRepository.save(accident).getId();
     }
-    public boolean update(int id, AccidentStatus status) { // updateStatusInAccidentById
-        ArrayList<Accident> accidentList = retrieve();
-        System.out.println("---------"+id);
-        for(Accident accident : accidentList) {
-            System.out.println(accident.getId());
-            if(accident.getId()==id) {
-                accident.setStatus(status);
-                accidentRepository.save(accident);
-                return true;
-            }
-        }
-        return false;
-    }
-    public int add(Accident accident) { // createAccident
-        ArrayList<Accident> accidentList = retrieve();
-        if(accidentList.size()==0) accident.setId(1);
-        else {accident.setId(accidentList.get(accidentList.size()-1).getId()+1);}
-        if(create(accident)) return accident.getId();
-        else {return 0;}
-    }
-    public ArrayList<Accident> findByStatus(AccidentStatus accidentStatus) { // findAccidentByStatus
-        ArrayList<Accident> accidentList = new ArrayList<>();
-        for(Accident accident : retrieve()) {
-            if(accident.getStatus() == accidentStatus) accidentList.add(accident);
-        }
-        return accidentList;
+    public ArrayList<Accident> findAccidentByStatus(AccidentStatus accidentStatus) { // findAccidentByStatus
+        return accidentRepository.findByStatus(accidentStatus);
     }
 
-    public Accident findById(int id) { //findAccidentById
-        for(Accident accident : retrieve()) {
-            System.out.println(accident.getId());
-            if(accident.getId() == id) return accident;
-        }
-        return null;
+    public Accident findAccidentById(int id) { //findAccidentById
+       return accidentRepository.findById(id).get();
     }
 
+    public ArrayList<Accident> findAccident() {
+        return (ArrayList<Accident>) accidentRepository.findAll();
+    }
 }
