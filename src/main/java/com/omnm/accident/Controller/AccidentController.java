@@ -20,7 +20,6 @@ public class AccidentController {
 
     @GetMapping("/accidents")
     public ResponseEntity<ArrayList<Accident>> getAccidentListByStatus(@Param("status") AccidentStatus status){
-        System.out.println(status);
         return this.accidentService.getAccidentListByStatus(status);
     }
     @GetMapping("/accidents/list")
@@ -33,7 +32,7 @@ public class AccidentController {
     }
     @PostMapping("/accident")
     public ResponseEntity<ReportAccidentResponse> postAccident(@RequestBody ReportAccidentRequest accident){
-        return accidentService.postAccident(accident.getAccident());
+        return accidentService.postAccident(accident.postAccident());
     }
     @PatchMapping("/status")
     public ResponseEntity<SetStatusResponse> patchStatusById(@RequestBody SetStatusRequest setStatusRequest){
