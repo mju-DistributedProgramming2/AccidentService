@@ -2,6 +2,7 @@ package com.omnm.accident.Service;
 
 
 import com.omnm.accident.DAO.AccidentDAO;
+import com.omnm.accident.DTO.AccidentList;
 import com.omnm.accident.DTO.GetAccidentListResponse;
 import com.omnm.accident.DTO.ReportAccidentResponse;
 import com.omnm.accident.DTO.SetStatusResponse;
@@ -29,24 +30,27 @@ public class AccidentService implements AccidentServiceIF{
 
 
     @Override
-    public ResponseEntity<ArrayList<Accident>> getAccidentListByStatus(AccidentStatus status) {
+    public ResponseEntity<AccidentList> getAccidentListByStatus(AccidentStatus status) {
         long beforeTime = System.currentTimeMillis();
-        ArrayList<Accident> accidentList = this.accidentDao.findAccidentByStatus(status);
-        if(accidentList.isEmpty())return new ResponseEntity<>(accidentList,new HttpHeaders(),HttpStatus.valueOf(500));
+        ArrayList<Accident> accidents = this.accidentDao.findAccidentByStatus(status);
+        AccidentList accidentList = new AccidentList(accidents);
+        if(accidentList.getAccidentList().size()==0)return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.valueOf(500));
 
 //        try {Thread.sleep(7000);}
 //        catch (InterruptedException e) {throw new RuntimeException(e);}
         long afterTime = System.currentTimeMillis();
         long secDiffTime = (afterTime - beforeTime)/1000;
-        if(secDiffTime>=7) return new ResponseEntity<>(accidentList,new HttpHeaders(),HttpStatus.valueOf(500));
+        if(secDiffTime>=7) return new ResponseEntity<>(null,new HttpHeaders(),HttpStatus.valueOf(500));
 
         return new ResponseEntity<>(accidentList,new HttpHeaders(),HttpStatus.valueOf(200));
     }
     @Override
-    public ResponseEntity<ArrayList<Accident>>  getAccidentList() {
+    public ResponseEntity<AccidentList>  getAccidentList() {
         long beforeTime = System.currentTimeMillis();
-        ArrayList<Accident> accidentList = this.accidentDao.findAccident();
-        if(accidentList.isEmpty())  return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.valueOf(500));
+        ArrayList<Accident> accidents = this.accidentDao.findAccident();
+        AccidentList accidentList = new AccidentList(accidents);
+
+        if(accidentList.getAccidentList().size()==0)  return new ResponseEntity<>(null, new HttpHeaders(), HttpStatus.valueOf(500));
 //        try {Thread.sleep(7000);}
 //        catch (InterruptedException e) {throw new RuntimeException(e);}
         long afterTime = System.currentTimeMillis();

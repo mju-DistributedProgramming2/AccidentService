@@ -1,7 +1,6 @@
 package com.omnm.accident;
 
 import com.omnm.accident.Repository.AccidentRepository;
-import com.omnm.accident.DAO.AccidentDao;
 import com.omnm.accident.Service.AccidentService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -14,8 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class AccidentServiceTests {
     @Autowired
     AccidentService accidentService;
-    @Mock
-    AccidentDao accidentDao;
+
     @Mock
     AccidentRepository accidentRepository;
 }

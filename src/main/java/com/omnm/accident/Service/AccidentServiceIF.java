@@ -2,6 +2,7 @@ package com.omnm.accident.Service;
 
 
 
+import com.omnm.accident.DTO.AccidentList;
 import com.omnm.accident.DTO.ReportAccidentResponse;
 import com.omnm.accident.DTO.SetStatusResponse;
 import com.omnm.accident.Entity.Accident;
@@ -16,9 +17,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface AccidentServiceIF extends Remote{
-    ResponseEntity<ArrayList<Accident>> getAccidentListByStatus(AccidentStatus status);
+    ResponseEntity<AccidentList> getAccidentListByStatus(AccidentStatus status);
 
-    ResponseEntity<ArrayList<Accident>> getAccidentList();
+    ResponseEntity<AccidentList> getAccidentList();
 
     ResponseEntity<Accident> getAccidentById(int id);
 

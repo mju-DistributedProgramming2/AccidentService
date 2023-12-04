@@ -20,19 +20,9 @@ public class AccidentDAO {
         this.accidentRepository = accidentRepository;
     }
 
-    public boolean updateStatusInAccidentById(int id, AccidentStatus status) { // updateStatusInAccidentById
-//        ArrayList<Accident> accidentList = retrieve();
-//        System.out.println("---------"+id);
-//        for(Accident accident : accidentList) {
-//            System.out.println(accident.getId());
-//            if(accident.getId()==id) {
-//                accident.setStatus(status);
-//                accidentRepository.save(accident);
-//                return true;
-//            }
-//        }
-//        return false;
+    public boolean updateStatusInAccidentById(int id, AccidentStatus status) {
         Optional<Accident> accidents  = accidentRepository.findById(id);
+        if(accidents.get().equals(Optional.empty())) return false;
         Accident accident = accidents.get();
         accident.setStatus(status);
         accidentRepository.save(accident);
@@ -40,18 +30,14 @@ public class AccidentDAO {
         return true;
     }
     public int createAccident(Accident accident) { // createAccident
-//        ArrayList<Accident> accidentList = retrieve();
-//        if(accidentList.size()==0) accident.setId(1);
-//        else {accident.setId(accidentList.get(accidentList.size()-1).getId()+1);}
-//        if(create(accident)) return accident.getId();
-//        else {return 0;}
         return accidentRepository.save(accident).getId();
     }
-    public ArrayList<Accident> findAccidentByStatus(AccidentStatus accidentStatus) { // findAccidentByStatus
+    public ArrayList<Accident> findAccidentByStatus(AccidentStatus accidentStatus) {
         return accidentRepository.findByStatus(accidentStatus);
     }
 
     public Accident findAccidentById(int id) { //findAccidentById
+        if(accidentRepository.findById(id).equals(Optional.empty()))return null;
        return accidentRepository.findById(id).get();
     }
 
