@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
 @RestController
 public class AccidentController {
 
@@ -33,8 +31,8 @@ public class AccidentController {
         return accidentService.postAccident(accident);
     }
     @PatchMapping("/status")
-    public ResponseEntity<Boolean> patchStatusById(@RequestBody SetStatusRequest setStatusRequest){
-        return accidentService.patchStatusById(setStatusRequest.getAccidentId(),setStatusRequest.getStatus());
+    public ResponseEntity<Boolean> patchStatusById(@RequestBody PatchStatusByIdRequest patchStatusByIdRequest){
+        return accidentService.patchStatusById(patchStatusByIdRequest.getAccidentId(), patchStatusByIdRequest.getStatus());
     }
 
     }

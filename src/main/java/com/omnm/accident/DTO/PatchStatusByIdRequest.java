@@ -2,7 +2,7 @@ package com.omnm.accident.DTO;
 
 import com.omnm.accident.enumeration.accident.AccidentStatus;
 
-public class SetStatusRequest {
+public class PatchStatusByIdRequest {
     int accidentId;
     AccidentStatus status;
 
