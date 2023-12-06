@@ -3,14 +3,8 @@ package com.omnm.accident.Service;
 
 import com.omnm.accident.DAO.AccidentDAO;
 import com.omnm.accident.DTO.AccidentList;
-import com.omnm.accident.DTO.GetAccidentListResponse;
-import com.omnm.accident.DTO.ReportAccidentResponse;
-import com.omnm.accident.DTO.SetStatusResponse;
 import com.omnm.accident.Entity.Accident;
 import com.omnm.accident.enumeration.accident.AccidentStatus;
-import com.omnm.accident.exception.EmptyListException;
-import com.omnm.accident.exception.NoDataException;
-import com.omnm.accident.exception.TimeDelayException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.http.HttpHeaders;
@@ -18,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 @Service
