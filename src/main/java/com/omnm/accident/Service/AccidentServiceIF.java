@@ -12,7 +12,7 @@ import java.rmi.Remote;
 public interface AccidentServiceIF extends Remote{
     ResponseEntity<AccidentList> getAccidentListByStatus(AccidentStatus status);
 
-    ResponseEntity<AccidentList> getAccidentList();
+    ResponseEntity<AccidentList> getAccidentListByCustomerId(int customerId);
 
     ResponseEntity<Accident> getAccidentById(int id);
 

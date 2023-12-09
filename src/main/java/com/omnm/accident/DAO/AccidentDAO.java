@@ -2,6 +2,7 @@ package com.omnm.accident.DAO;//package dao;
 
 
 
+import com.omnm.accident.DTO.Contract;
 import com.omnm.accident.Entity.Accident;
 import com.omnm.accident.Repository.AccidentRepository;
 import com.omnm.accident.enumeration.accident.AccidentStatus;
@@ -41,7 +42,11 @@ public class AccidentDAO {
        return accidentRepository.findById(id).get();
     }
 
-    public ArrayList<Accident> findAccident() {
+    public ArrayList<Accident> findAccidentByContract(Contract contract) {
+        return accidentRepository.findByContractId(contract.getId());
+    }
+
+    public ArrayList<Accident> findAll() {
         return (ArrayList<Accident>) accidentRepository.findAll();
     }
 }

@@ -18,9 +18,9 @@ public class AccidentController {
     public ResponseEntity<AccidentList> getAccidentListByStatus(@PathVariable("status") AccidentStatus status){
         return this.accidentService.getAccidentListByStatus(status);
     }
-    @GetMapping("/list/accidents")
-    public ResponseEntity<AccidentList> getAccidentList(){
-        return this.accidentService.getAccidentList();
+    @GetMapping("/list/accidents/{customerId}")
+    public ResponseEntity<AccidentList> getAccidentListByCustomerId(@PathVariable("customerId") int customerId){
+        return this.accidentService.getAccidentListByCustomerId(customerId);
     }
     @GetMapping("/accident/{id}")
     public ResponseEntity<Accident> getAccidentById(@PathVariable("id") int id){

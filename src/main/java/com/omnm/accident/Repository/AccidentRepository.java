@@ -11,6 +11,8 @@ import java.util.ArrayList;
 @Repository
 public interface AccidentRepository extends JpaRepository<Accident,Integer> {
     ArrayList<Accident> findByStatus(AccidentStatus status);
- //   Accident findById(int id);
+
+    ArrayList<Accident> findByContractId(Integer contractId);
+    //   Accident findById(int id);
 
 }
