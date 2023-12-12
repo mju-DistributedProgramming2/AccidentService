@@ -6,6 +6,11 @@ public class PatchStatusByIdRequest {
     int accidentId;
     AccidentStatus status;
 
+    public PatchStatusByIdRequest(int accidentId, AccidentStatus accidentStatus) {
+        this.accidentId = accidentId;
+        this.status = accidentStatus;
+    }
+
     public int getAccidentId() {
         return accidentId;
     }
