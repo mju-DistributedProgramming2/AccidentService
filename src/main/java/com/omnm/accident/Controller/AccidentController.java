@@ -26,10 +26,12 @@ public class AccidentController {
     public ResponseEntity<Accident> getAccidentById(@PathVariable("id") int id){
         return this.accidentService.getAccidentById(id);
     }
+
     @PostMapping("/accident")
     public ResponseEntity<Integer> postAccident(@RequestBody Accident accident){
         return accidentService.postAccident(accident);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
     @PatchMapping("/status")
     public ResponseEntity<Boolean> patchStatusById(@RequestBody PatchStatusByIdRequest patchStatusByIdRequest){
         return accidentService.patchStatusById(patchStatusByIdRequest.getAccidentId(), patchStatusByIdRequest.getStatus());

@@ -28,13 +28,12 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
 @AutoConfigureMockMvc
+@SpringBootTest
 class AccidentServiceApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
-
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -113,6 +112,7 @@ class AccidentServiceApplicationTests {
                 .andReturn();
 
         verify(accidentService, times(1)).getAccidentListByStatus(AccidentStatus.ReportAccident);
+        System.out.println("테스트가 성공적으로 완료되었습니다");
     }
 
     @Test
@@ -149,6 +149,7 @@ class AccidentServiceApplicationTests {
                 .andReturn();
 
         verify(accidentService, times(1)).getAccidentListByCustomerId(1);
+        System.out.println("테스트가 성공적으로 완료되었습니다");
     }
 
     @Test
@@ -162,6 +163,7 @@ class AccidentServiceApplicationTests {
                 .andReturn();
 
         verify(accidentService, times(1)).getAccidentById(1);
+        System.out.println("테스트가 성공적으로 완료되었습니다");
     }
 
     @Test
@@ -176,6 +178,7 @@ class AccidentServiceApplicationTests {
                 .andReturn();
 
         verify(accidentService, times(1)).postAccident(any(Accident.class));
+        System.out.println("테스트가 성공적으로 완료되었습니다");
     }
 
     @Test
@@ -190,5 +193,6 @@ class AccidentServiceApplicationTests {
                 .andReturn();
 
         verify(accidentService, times(1)).patchStatusById(1, AccidentStatus.RefuseCompensate);
+        System.out.println("테스트가 성공적으로 완료되었습니다");
     }
 }
