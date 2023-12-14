@@ -16,8 +16,6 @@ public class Contract implements Serializable {
     @Id
     @GeneratedValue
     private Integer id;
-    @Column(name = "customer_info_id", nullable = false)
-    private Integer customerInfoId;
     @Column(name = "customer_id", nullable = false)
     private String customerId;
     @Column(name = "insurance_id", nullable = false)
@@ -39,8 +37,7 @@ public class Contract implements Serializable {
     @Column(name = "contract_status", nullable = false)
     private ContractStatus contractStatus;
 
-    public Contract(Integer customerInfoId, Integer insuranceId, String saleEmployeeId, String customerId, ContractTerm term, Integer paymentFee, PaymentCycle paymentCycle, Integer compensation, ContractStatus contractStatus) {
-        this.customerInfoId = customerInfoId;
+    public Contract(Integer insuranceId, String saleEmployeeId, String customerId, ContractTerm term, Integer paymentFee, PaymentCycle paymentCycle, Integer compensation, ContractStatus contractStatus) {
         this.insuranceId = insuranceId;
         this.saleEmployeeId = saleEmployeeId;
         this.customerId=customerId;
@@ -61,14 +58,6 @@ public class Contract implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getCustomerInfoId() {
-        return customerInfoId;
-    }
-
-    public void setCustomerInfoId(Integer customerInfoId) {
-        this.customerInfoId = customerInfoId;
     }
 
     public Integer getInsuranceId() {
