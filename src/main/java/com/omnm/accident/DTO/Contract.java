@@ -10,31 +10,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "contract")
+
 public class Contract implements Serializable {
-    @Id
-    @GeneratedValue
     private Integer id;
-    @Column(name = "customer_id", nullable = false)
     private String customerId;
-    @Column(name = "insurance_id", nullable = false)
     private Integer insuranceId;
-    @Column(name = "sale_employee_id", nullable = false)
     private String saleEmployeeId;
     private ContractTerm term;
-    @Column(name = "start_date", nullable = false)
     private Timestamp startDate;
-    @Column(name = "expiration_date", nullable = false)
     private Timestamp expirationDate;
-    @Column(name = "payment_fee", nullable = false)
     private Integer paymentFee;
-    @Column(name = "payment_cycle", nullable = false)
     private PaymentCycle paymentCycle;
-    @Column(name = "payment_deadline", nullable = false)
     private Timestamp paymentDeadline;
     private Integer compensation;
-    @Column(name = "contract_status", nullable = false)
     private ContractStatus contractStatus;
 
     public Contract(Integer insuranceId, String saleEmployeeId, String customerId, ContractTerm term, Integer paymentFee, PaymentCycle paymentCycle, Integer compensation, ContractStatus contractStatus) {
